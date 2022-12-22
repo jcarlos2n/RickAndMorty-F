@@ -5,4 +5,15 @@
     background-color: red;
     margin: 3em;
     flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.listContainer{
+    background-color: gold;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    
 }
