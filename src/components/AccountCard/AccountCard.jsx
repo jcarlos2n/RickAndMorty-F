@@ -1,10 +1,12 @@
 
 import Container from 'react-bootstrap/Container';
-import "./AccountCard.css";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useEffect, useState } from "react";
 import axios from 'axios';
+import LoanCard from '../LoanCard/Loancard';
+import './AccountCard.css';
+
 
 
 const AccountCard = props => {
@@ -29,10 +31,19 @@ const AccountCard = props => {
 
     const LoanList = () => {
         if (data.length > 0) {
-            // console.log("aqui si", data)
-            return(
-                <h1>HAy</h1>
-            )
+            // console.log("aqui si", data.length)
+            if (data.length > 0) {
+                return(
+                   
+                        data?.map((loan, index) => (
+                            <Container key={index} className="listCard">
+                                <LoanCard data={loan} className='loanBox'/>
+                            </Container>
+                        ))
+                 
+                )
+            }
+            
         }else{
             // console.log("aqui no", data)
             return(
@@ -42,15 +53,15 @@ const AccountCard = props => {
     }
 
     return (
-        <Container>
-            <Card className="text-center">
+        <Container className="accountCard">
+            <Card className="text-center accountCard">
                 <Card.Body>
                     <Card.Title>Cuenta:</Card.Title>
                     <Card.Text>{props.data._id}</Card.Text>
                     <Card.Text><strong>Saldo: </strong>{props.data.balance}</Card.Text>
                     <Button variant="primary">Go somewhere</Button>
                 </Card.Body>
-                <Container>
+                <Container className='loanBox'>
                     <LoanList/>
                 </Container>
                 {/* <Card.Footer className="text-muted">2 days ago</Card.Footer> */}
