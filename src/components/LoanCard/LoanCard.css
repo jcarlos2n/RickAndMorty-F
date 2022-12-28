@@ -1,7 +1,6 @@
 .loanCard{
-    margin: 0.2em;
     background-color: brown;
-    width: 18em;
+    width: 20em;
     display: flex;
     justify-content: center;
     align-items: center;

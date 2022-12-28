@@ -1,6 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import axios from 'axios';
 import jwt from 'jwt-decode';
+import { addAccount } from '../MoneyTrans/acountSlice';
 
 export const userSlice = createSlice({
     name: 'user',
@@ -54,7 +55,10 @@ export const loginUser = (body) => async (dispatch) => {
                 ...decode, 
                 token: user.data.token
             }))
+            const account = await axios.get(`http://localhost:3001/accounts/getAccounts/${user.data.user.id}`)
+            dispatch(addAccount(account.data.data[0]))
         }
+        
 
     } catch (error) {
         console.log(error)

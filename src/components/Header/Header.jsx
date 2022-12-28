@@ -35,6 +35,7 @@ function Header() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link as={Link} to="/account">Cuenta</Nav.Link>
+              {/* <Nav.Link as={Link} to="/loan">Prestamos</Nav.Link> */}
               <Nav.Link as={Link} to="/profile">Perfil</Nav.Link>
 
             </Nav>

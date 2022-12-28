@@ -4,22 +4,16 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useEffect, useState } from "react";
 import axios from 'axios';
-import LoanCard from '../LoanCard/Loancard';
+import LoanCard from '../LoanCard/LoanCard';
 import './AccountCard.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { Link } from "react-router-dom";
-import DropdownButton from 'react-bootstrap/DropdownButton';
-
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-
-
-
-
-
+import { useDispatch } from 'react-redux'
+import { addAccount } from '../../containers/MoneyTrans/acountSlice';
 
 const AccountCard = props => {
-    // console.log("soy props", props);
 
+    const dispatch = useDispatch();
     const [data, setData] = useState({});
 
     useEffect(() => {
@@ -35,58 +29,48 @@ const AccountCard = props => {
             }
         }
         fetchLoans()
+        
     }, [])
 
     const LoanList = () => {
         if (data.length > 0) {
-            // console.log("aqui si", data.length)
-            if (data.length > 0) {
                 return (
 
                     data?.map((loan, index) => (
-                        // <Container key={index} className="listCard">
-                        //     <LoanCard data={loan} className='loanBox' />
-                        // </Container>
+                        
                         <Dropdown.Item key={index} className="listCard">
                             <LoanCard data={loan} className='loanBox' />
                         </Dropdown.Item>
                     ))
 
                 )
-            }
 
         } else {
-            // console.log("aqui no", data)
+          
             return (
-                <h1>no hay</h1>
+                <h3>No tienes préstamos asociados</h3>
             )
         }
-    }
+    };
 
     return (
-        <Container className="accountCard">
-            <Card className="text-center accountCard">
-                <Card.Body>
+        <Container>
+            <Card className="text-center">
+                <Card.Body className="accountCard">
                     <Card.Title>Cuenta:</Card.Title>
                     <Card.Text>{props.data._id}</Card.Text>
                     <Card.Text><strong>Saldo: </strong>{props.data.balance}</Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                </Card.Body>
-                {/* <Container className='loanBox'>
-                    <LoanList />
-                </Container> */}
-                <Dropdown>
-                    <Dropdown.Toggle variant="success" id="dropdown-basic">
-                        Dropdown Button
-                    </Dropdown.Toggle>
+                    <Button variant="primary" className='moneyButton' as={Link} to="/loan" >Pedir prestamo</Button>
+                    <Button variant="primary" className='moneyButton' >Ingresar dinero</Button>
+                    <Button variant="primary" className='moneyButton' >Retirar dinero</Button>
+                    <Button variant="primary" className='moneyButton' >Enviar dinero</Button>
 
-                    <Dropdown.Menu>
+                </Card.Body>
+                        <h4>Préstamos asociados</h4>
+
                         <Container className='loanBox'>
                             <LoanList />
                         </Container>
-                    </Dropdown.Menu>
-                </Dropdown>
-                {/* <Card.Footer className="text-muted">2 days ago</Card.Footer> */}
             </Card>
         </Container>
     )

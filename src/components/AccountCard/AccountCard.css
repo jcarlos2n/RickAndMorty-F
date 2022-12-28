@@ -1,5 +1,4 @@
 .accountCard{
-    width: 50em;
     height: auto;
     
 }
@@ -21,4 +20,8 @@
     justify-content: center;
     margin: 1em;
     width: 18em;
+}
+
+.moneyButton{
+    margin: 0.2em;
 }
