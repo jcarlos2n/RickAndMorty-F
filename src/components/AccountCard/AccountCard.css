@@ -1,6 +1,7 @@
 .accountCard{
     width: 50em;
     height: auto;
+    
 }
 
 .loanBox{
@@ -15,6 +16,9 @@
 
 .listCard{
     background-color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 1em;
-    width: 19em;
+    width: 18em;
 }

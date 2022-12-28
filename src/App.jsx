@@ -9,7 +9,6 @@ import Account from './containers/Account/Account'
 
 function App() {
  
-
   return (
     <div className="App">
     <HashRouter>

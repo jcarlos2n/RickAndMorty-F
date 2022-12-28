@@ -6,47 +6,58 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 import LoanCard from '../LoanCard/Loancard';
 import './AccountCard.css';
+import Dropdown from 'react-bootstrap/Dropdown';
+import { Link } from "react-router-dom";
+import DropdownButton from 'react-bootstrap/DropdownButton';
+
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+
+
+
 
 
 
 const AccountCard = props => {
     // console.log("soy props", props);
 
-    const[data, setData] = useState({});
+    const [data, setData] = useState({});
 
     useEffect(() => {
-        async function fetchLoans(){
+        async function fetchLoans() {
             try {
                 axios.get(`http://localhost:3001/loans/getLoans/${props.data._id}`)
-                .then(resp => {
-                    setData(resp.data.data)
-                    // console.log(resp.data)
-                })
+                    .then(resp => {
+                        setData(resp.data.data)
+                        // console.log(resp.data)
+                    })
             } catch (error) {
                 console.log(error)
             }
         }
         fetchLoans()
-    },[])
+    }, [])
 
     const LoanList = () => {
         if (data.length > 0) {
             // console.log("aqui si", data.length)
             if (data.length > 0) {
-                return(
-                   
-                        data?.map((loan, index) => (
-                            <Container key={index} className="listCard">
-                                <LoanCard data={loan} className='loanBox'/>
-                            </Container>
-                        ))
-                 
+                return (
+
+                    data?.map((loan, index) => (
+                        // <Container key={index} className="listCard">
+                        //     <LoanCard data={loan} className='loanBox' />
+                        // </Container>
+                        <Dropdown.Item key={index} className="listCard">
+                            <LoanCard data={loan} className='loanBox' />
+                        </Dropdown.Item>
+                    ))
+
                 )
             }
-            
-        }else{
+
+        } else {
             // console.log("aqui no", data)
-            return(
+            return (
                 <h1>no hay</h1>
             )
         }
@@ -61,9 +72,20 @@ const AccountCard = props => {
                     <Card.Text><strong>Saldo: </strong>{props.data.balance}</Card.Text>
                     <Button variant="primary">Go somewhere</Button>
                 </Card.Body>
-                <Container className='loanBox'>
-                    <LoanList/>
-                </Container>
+                {/* <Container className='loanBox'>
+                    <LoanList />
+                </Container> */}
+                <Dropdown>
+                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                        Dropdown Button
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                        <Container className='loanBox'>
+                            <LoanList />
+                        </Container>
+                    </Dropdown.Menu>
+                </Dropdown>
                 {/* <Card.Footer className="text-muted">2 days ago</Card.Footer> */}
             </Card>
         </Container>
