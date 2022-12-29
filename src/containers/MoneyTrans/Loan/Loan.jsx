@@ -12,9 +12,15 @@ import axios from 'axios';
 
 
 function Loan() {
-
+    const dataUser = useSelector(userData);
     const navigate = useNavigate();
     const account = useSelector(accountData);
+
+    useEffect(() => {
+        if (!dataUser?.user) {
+            navigate('/');
+        }
+    }, [])
   
     const [loan, setLoan] = useState({
         quantity: '',
@@ -36,6 +42,9 @@ function Loan() {
             months: loan.months,
             account_id: loan.account_id
         });
+        setTimeout(() => {
+            navigate('/')
+        }, 100);
         } catch (error) {
             console.log(error)
         }

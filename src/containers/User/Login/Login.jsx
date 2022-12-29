@@ -36,7 +36,6 @@ function Login() {
             email: credentials.email,
             password: credentials.password
         }));
-        console.log("Hago el login")
         setTimeout(() => {
             navigate('/')
         },1000)
