@@ -22,53 +22,11 @@ function Cash() {
         }
     }, [])
   
-    // const [loan, setLoan] = useState({
-    //     quantity: '',
-    //     months: '',
-    //     account_id: account._id
-    // });
-
-    // const handleInput = (event) => {
-    //     setLoan({
-    //         ...loan,
-    //         [event.target.name]: event.target.value
-    //     })
-    // }
-
-    // const createLoan = async (req, res) => {
-    //     try {
-    //         const newLoan = await axios.post("http://localhost:3001/loans/createLoan",{
-    //         quantity: loan.quantity,
-    //         months: loan.months,
-    //         account_id: loan.account_id
-    //     })
-    //     return console.log(newLoan),setTimeout(() => {
-    //         navigate("/")
-    //     }, 200);
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-        
-    // }
+   
 
     return (
-        // <Container>
-        //     <Form onSubmit={createLoan}>
-        //         <Form.Group className="mb-3">
-        //             <Form.Label>Cantidad</Form.Label>
-        //             <Form.Control onChange={handleInput} name="quantity" type="number" placeholder="Introduce cantidad deseada" />
-        //         </Form.Group>
-
-        //         <Form.Group className="mb-3">
-        //             <Form.Label>Mensualidades</Form.Label>
-        //             <Form.Control onChange={handleInput} name="months" type="number" placeholder="Mensualidades" />
-        //         </Form.Group>
-        //         <Button variant="primary" type="submit">
-        //             Envíar
-        //         </Button>
-        //     </Form>
-        // </Container>
-        <h1>Caja</h1>
+        
+      <h5>Web en construcción</h5>
     )
 }
 

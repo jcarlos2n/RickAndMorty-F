@@ -1,0 +1,37 @@
+.homeWall{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 40em;
+    background-color: rgba(255, 255, 255, 0.491);
+    padding: 1em;
+    border-radius: 1em;
+}
+
+.sinBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+h1{
+    font-size: 13em;
+    margin: 0;
+    padding: 0;
+}
+
+h3{
+    margin: 0;
+}
+h4{
+    font-size: 2em;
+    margin: 0;
+    padding: 0;
+}
+
+.accountOnline{
+    margin: 0;
+}

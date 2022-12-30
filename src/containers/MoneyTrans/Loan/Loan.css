@@ -2,7 +2,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: red;
     margin: 3em;
     height: auto;
     flex-direction: column;
@@ -10,7 +9,6 @@
 }
 
 .listContainer{
-    background-color: gold;
     display: flex;
     flex-direction: row;
     align-items: center;

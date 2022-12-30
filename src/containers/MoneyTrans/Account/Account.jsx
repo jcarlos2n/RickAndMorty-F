@@ -17,9 +17,10 @@ function Account() {
     const dataUser = useSelector(userData)
     const account = useSelector(accountData);
     const [data, setData] = useState({});
-    const [accountInfo, setInfo] = useState({});
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+
 
     useEffect(() => {
         if (!dataUser?.user) {
@@ -53,14 +54,14 @@ function Account() {
             fetchLoans();
             
         }
-    }, []);
+        
+    }, [data.quantity]);
 
     const LoanList = () => {
         if (data.length > 0) {
+            const loans = data.filter(loan => loan.quantity > 0);
             return (
-
-                data?.map((loan, index) => (
-
+                loans?.map((loan, index) => (
                     <Container key={index} className="listCard">
                         <LoanCard data={loan}/>
                     </Container>
@@ -77,8 +78,6 @@ function Account() {
 
     return (
         <Container fluid className='accountWall'>
-            <h1>Cuenta</h1>
-
             <Container fluid className="listContainer">
                 <Card className="text-center">
                     <Card.Body className="accountCard">

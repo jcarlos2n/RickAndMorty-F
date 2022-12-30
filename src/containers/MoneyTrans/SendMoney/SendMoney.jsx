@@ -55,7 +55,7 @@ function SendMoney() {
 
                     <Container key={index} className="userTarget">
                         <UserCard data={user} />
-                        <Button variant="primary" name='user_id' value={user._id} onClick={handleInput}>Info</Button>
+                        <Button variant="primary" name='user_id' value={user._id} onClick={handleInput}>Seleccionar</Button>
                     </Container>
                 ))
             )
@@ -80,7 +80,7 @@ function SendMoney() {
     return (
         <Container className='sendMoneyWall'>
             Selecciona a que amigo le quieres enviar dinero
-            <Container>
+            <Container className='userList'>
                 <UserList />
             </Container>
 
