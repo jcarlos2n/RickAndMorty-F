@@ -9,6 +9,7 @@ export const accountSlice = createSlice({
         addAccount: (state, action) => {
             // state.account.push(action.payload)
             return {
+                account: [],
                 ...state,
                 ...action.payload
             }

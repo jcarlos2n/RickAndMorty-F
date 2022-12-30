@@ -68,7 +68,7 @@ function SendMoney() {
                 quantity: data.quantity,
                 user_id: data.user_id
             })
-            return console.log("hecho"), setTimeout(() => {
+            return console.log(newSend), setTimeout(() => {
                 navigate("/")
             }, 200);
         } catch (error) {

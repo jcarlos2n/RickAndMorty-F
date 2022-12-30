@@ -41,10 +41,10 @@ function Loan() {
             quantity: loan.quantity,
             months: loan.months,
             account_id: loan.account_id
-        });
-        setTimeout(() => {
-            navigate('/')
-        }, 100);
+        })
+        return console.log(newLoan),setTimeout(() => {
+            navigate("/")
+        }, 200);
         } catch (error) {
             console.log(error)
         }

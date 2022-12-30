@@ -8,6 +8,7 @@ import Profile from './containers/User/Profile/Profile'
 import Loan from './containers/MoneyTrans/Loan/Loan'
 import Account from './containers/MoneyTrans/Account/Account'
 import SendMoney from './containers/MoneyTrans/SendMoney/SendMoney'
+import Cash from './containers/MoneyTrans/Cash/Cash'
 
 function App() {
  
@@ -22,6 +23,7 @@ function App() {
           <Route path="/loan" element={<Loan />} />
           <Route path="/account" element={<Account />} />
           <Route path="/sendmoney" element={<SendMoney />} />
+          <Route path="/cash" element={<Cash />} />
         </Routes>
       </HashRouter>
     </div>

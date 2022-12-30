@@ -10,11 +10,36 @@
 }
 
 .listContainer{
-    background-color: gold;
+    background-color: blue;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     
+}
+
+.loanBox{
+    background-color: green;
+    min-width: 30em;
+    width: 80em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.listCard{
+    background-color: aqua;
+    width: 20em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5em;
+}
+
+.moneyButton{
+    margin: 0.3em;
 }
