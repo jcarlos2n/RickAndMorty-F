@@ -2,16 +2,21 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
-import './LoanCard.css'
+import './LoanCard.css';
+import { addAccount } from "../../containers/MoneyTrans/acountSlice";
+import { useDispatch } from 'react-redux';
+
+
 
 
 
 const LoanCard = props => {
-    
+     const dispatch = useDispatch();
+
     const payQuote = async (req, res) => {
         try {
             const quote = await axios.put(`http://localhost:3001/loans/payQuote/${props.data._id}`)
-            return console.log(quote.data);
+            return console.log(quote.data), dispatch(addAccount(quote.data.account));
         } catch (error) {
             console.log(error)
         }

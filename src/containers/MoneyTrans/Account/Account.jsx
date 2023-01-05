@@ -7,11 +7,10 @@ import { userData } from '../../User/userSlice';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import "./Account.css"
+import "./Account.css";
 import axios from 'axios';
 import { accountData } from '../acountSlice';
 import LoanCard from "../../../components/LoanCard/LoanCard";
-import { addAccount } from "../acountSlice";
 
 function Account() {
     const dataUser = useSelector(userData)
@@ -26,36 +25,23 @@ function Account() {
         if (!dataUser?.user) {
             navigate('/');
         } else {
-            async function fetchAccount(){
-                try {
-                    axios.get(`http://localhost:3001/accounts/getaccount/${account._id}`)
-                    .then(resp => {
-                        setInfo(resp.data.data)
-                        dispatch(addAccount(account.data.data[0]))
-                    })
-                } catch (error) {
-                    
-                }
-            }
-            
             async function fetchLoans() {
                 try {
-                    
+
                     axios.get(`http://localhost:3001/loans/getLoans/${account._id}`)
                         .then(resp => {
                             setData(resp.data.data)
-                            
+
                         })
                 } catch (error) {
                     console.log(error)
                 }
             }
-            fetchAccount();
+
             fetchLoans();
-            
         }
-        
-    }, [data.quantity]);
+
+    }, [account.balance]);
 
     const LoanList = () => {
         if (data.length > 0) {
@@ -63,10 +49,9 @@ function Account() {
             return (
                 loans?.map((loan, index) => (
                     <Container key={index} className="listCard">
-                        <LoanCard data={loan}/>
+                        <LoanCard data={loan} />
                     </Container>
                 ))
-
             )
 
         } else {
@@ -87,16 +72,12 @@ function Account() {
                         <Button variant="primary" className='moneyButton' as={Link} to="/loan" >Pedir prestamo</Button>
                         <Button variant="primary" className='moneyButton' as={Link} to="/cash" >Ingresar/Retirar dinero</Button>
                         <Button variant="primary" className='moneyButton' as={Link} to="/sendmoney" >Enviar dinero</Button>
-
                     </Card.Body>
                     <Container className='loanBox'>
                         <LoanList />
                     </Container>
                 </Card>
             </Container>
-
-
-
         </Container>
 
     )

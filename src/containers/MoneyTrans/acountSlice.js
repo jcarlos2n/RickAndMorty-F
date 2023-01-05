@@ -3,13 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 export const accountSlice = createSlice({
     name: 'account',
     initialState: {
-        account: []
+        account: {}
     },
     reducers: {
         addAccount: (state, action) => {
             // state.account.push(action.payload)
             return {
-                account: [],
+                account: {},
                 ...state,
                 ...action.payload
             }
@@ -18,7 +18,7 @@ export const accountSlice = createSlice({
         cleanAccount: (state, action) => {
             return{
                 ...state,
-                account: []
+                account: {}
             }
         }
     }
