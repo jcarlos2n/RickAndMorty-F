@@ -23,8 +23,10 @@ function Cash() {
   }, [])
 
   const [update, setUp] = useState({
-    details: false,
-    op: ""
+    status: true,
+    form: false,
+    op: "",
+    text: ""
   });
 
   const [data, setData] = useState({
@@ -40,11 +42,30 @@ function Cash() {
   };
 
   const showUp = (e) => {
-    setUp({
-      ...update,
-      details: true,
-      [e.target.name]: e.target.value
-    })
+    // setUp({
+    //   ...update,
+    //   status: false,
+    //   form: true,
+    //   [e.target.name]: e.target.value
+    // })
+    if (e.target.value == "cashout") {
+      setUp({
+        ...update,
+        status: false,
+        form: true,
+        [e.target.name]: e.target.value,
+        text: "retirar"
+      })
+    } else if (e.target.value == "depositmoney") {
+      setUp({
+        ...update,
+        status: false,
+        form: true,
+        [e.target.name]: e.target.value,
+        text: "ingresar"
+      })
+    }
+   
   };
 
   // const moneyOp = async (req, res) => {
@@ -61,53 +82,87 @@ function Cash() {
 
   // }
 
-  const OperationForm = (e) => {
-   
-    if (update.op === "cashout") {
-      return (
-        <Form>
-          <Form.Group className="mb-3">
-            <Form.Label>¿Que cantidad desea retirar?</Form.Label>
-            <Form.Control onChange={handleInput}  name="quantity" type="number" placeholder="Introduce cantidad" />
-          </Form.Group>
+  // const OperationForm = () => {
 
-          <Button variant="primary" type="submit">
-          Realizar operación
-          </Button>
-        </Form>
-      )
-    } else if (update.op === "depositmoney") {
-      return (
-        <Form>
-          <Form.Group className="mb-3">
-            <Form.Label>¿Que cantidad desea ingresar?</Form.Label>
-            <Form.Control onChange={handleInput}  name="quantity" type="number" min="1" max={account.balance} placeholder="Introduce cantidad" />
-          </Form.Group>
+  //   if (update.op == "cashout") {
+  //     return (
+  //       <Container>
+  //         <Form>
+  //           <Form.Group className="mb-3">
+  //             <Form.Label>¿Que cantidad desea retirar?</Form.Label>
+  //             <Form.Control onChange={handleInput} name="quantity" type="number" placeholder="Introduce cantidad" />
+  //           </Form.Group>
 
-          <Button variant="primary" type="submit">
-            Realizar operación
-          </Button>
-        </Form>
-      )
-    }
+  //           <Button variant="primary" type="submit">
+  //             Realizar operación
+  //           </Button>
+  //         </Form>
+  //       </Container>
+
+  //     )
+  //   } else if (update.op == "depositmoney") {
+  //     return (
+  //       <Container>
+  //         <Form>
+  //           <Form.Group className="mb-3">
+  //             <Form.Label>¿Que cantidad desea ingresar?</Form.Label>
+  //             <Form.Control onChange={handleInput} name="quantity" type="number" min="1" max={account.balance} placeholder="Introduce cantidad" />
+  //           </Form.Group>
+
+  //           <Button variant="primary" type="submit">
+  //             Realizar operación
+  //           </Button>
+  //         </Form>
+  //       </Container>
+
+  //     )
+  //   }
+  // }
+
+  if (update.status == false) {
+    console.log(update)
   }
 
-  if (data.quantity != '') {
-    console.log(data)
+  // return (
+
+  //   <Container>
+  //     <h5>¿Que operacion desea realizar?</h5>
+
+  //     <Button variant="primary" name="op" value="cashout" onClick={showUp}>Retirar</Button>
+  //     <Button variant="primary" name="op" value="depositmoney" onClick={showUp}>Ingresar</Button>
+
+  //     <OperationForm />
+
+  //   </Container>
+  // )
+
+  if (update.status == true) {
+    return (
+      <Container>
+        <h5>¿Que operacion desea realizar?</h5>
+
+        <Button variant="primary" name="op" value="cashout" onClick={showUp}>Retirar</Button>
+        <Button variant="primary" name="op" value="depositmoney" onClick={showUp}>Ingresar</Button>
+
+      </Container>
+    )
+
+  } else if (update.status == false) {
+    return(
+      <Container>
+           <Form>
+             <Form.Group className="mb-3">
+               <Form.Label>¿Que cantidad desea {update.text}?</Form.Label>
+               <Form.Control onChange={handleInput} name="quantity" type="number" min="1" max={account.balance} placeholder="Introduce cantidad" />
+             </Form.Group>
+
+             <Button variant="primary" type="submit">
+               Realizar operación
+             </Button>
+           </Form>
+         </Container>
+    )
   }
-
-  return (
-
-    <Container>
-      <h5>¿Que operacion desea realizar?</h5>
-
-      <Button variant="primary" name="op" value="cashout" onClick={showUp}>Retirar</Button>
-      <Button variant="primary" name="op" value="depositmoney" onClick={showUp}>Ingresar</Button>
-
-      <OperationForm />
-
-    </Container>
-  )
 }
 
 export default Cash;
