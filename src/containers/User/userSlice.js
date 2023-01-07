@@ -2,6 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 import axios from 'axios';
 import jwt from 'jwt-decode';
 import { addAccount } from '../MoneyTrans/acountSlice';
+import { addNotice } from './noticeSlice';
 
 export const userSlice = createSlice({
     name: 'user',
@@ -55,8 +56,12 @@ export const loginUser = (body) => async (dispatch) => {
                 ...decode, 
                 token: user.data.token
             }))
-            const account = await axios.get(`http://localhost:3001/accounts/getAllAccounts/${user.data.user.id}`)
-            dispatch(addAccount(account.data.data[0]))
+            const account = await axios.get(`http://localhost:3001/accounts/getallaccounts/${user.data.user.id}`)
+            dispatch(addAccount(account.data.data[0]));
+            
+            const notice = await axios.get(`http://localhost:3001/notices/getnotices/${account.data.data[0]._id}`)
+            dispatch(addNotice(notice.data.data))
+            console.log(notice.data)
         }
         
 

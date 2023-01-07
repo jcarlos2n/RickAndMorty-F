@@ -6,10 +6,25 @@ import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { userData } from "../../containers/User/userSlice";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import axios from 'axios';
+import { accountData } from '../../containers/MoneyTrans/acountSlice';
+import { noticeData } from "../../containers/User/noticeSlice";
 
 
 function Header() {
+
+  const account = useSelector(accountData);
   const dataUser = useSelector(userData);
+  const data = useSelector(noticeData)
+
+  useEffect(() => {
+    if (!dataUser?.token) {
+      console.log("sin token")
+    } else{
+      console.log(data)
+    }
+  }, [data])
 
   if (!dataUser?.token) {
     return (
@@ -27,22 +42,43 @@ function Header() {
       </Navbar>
     )
   } else {
-    return (
-      <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
-        <Container>
-          <Navbar.Brand as={Link} to="/">RickAndMortyBank</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link as={Link} to="/account">Cuenta</Nav.Link>
-              {/* <Nav.Link as={Link} to="/loan">Prestamos</Nav.Link> */}
-              <Nav.Link as={Link} to="/profile">Perfil</Nav.Link>
 
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    )
+    if (data) {
+      return (
+        <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
+          <Container>
+            <Navbar.Brand as={Link} to="/">RickAndMortyBank</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+                <Nav.Link as={Link} to="/account">Cuenta</Nav.Link>
+                <Nav.Link as={Link} to="/profile">Perfil</Nav.Link>
+                <Nav.Link as={Link} to="/profile">Notificacion</Nav.Link>
+
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+      )
+    } else {
+      return (
+        <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
+          <Container>
+            <Navbar.Brand as={Link} to="/">RickAndMortyBank</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+                <Nav.Link as={Link} to="/account">Cuenta</Nav.Link>
+                <Nav.Link as={Link} to="/profile">Perfil</Nav.Link>
+
+
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+      )
+    }
+
   }
 
 

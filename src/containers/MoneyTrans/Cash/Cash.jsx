@@ -42,12 +42,6 @@ function Cash() {
   };
 
   const showUp = (e) => {
-    // setUp({
-    //   ...update,
-    //   status: false,
-    //   form: true,
-    //   [e.target.name]: e.target.value
-    // })
     if (e.target.value == "cashout") {
       setUp({
         ...update,
@@ -68,73 +62,23 @@ function Cash() {
    
   };
 
-  // const moneyOp = async (req, res) => {
-  //   try {
-  //     const newSend = await axios.put(`http://localhost:3001/accounts/${update.op}/${data.id}`, {
-  //       quantity: data.quantity
-  //     })
-  //     return console.log(newSend), setTimeout(() => {
-  //       navigate("/")
-  //     }, 200);
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
+  const moneyOp = async (req, res) => {
+    try {
+      const newOp = await axios.put(`http://localhost:3001/accounts/${update.op}/${data.id}`, {
+        quantity: data.quantity
+      })
+      return console.log(newOp), setTimeout(() => {
+        navigate("/")
+      }, 2000);
+    } catch (error) {
+      console.log(error)
+    }
 
-  // }
-
-  // const OperationForm = () => {
-
-  //   if (update.op == "cashout") {
-  //     return (
-  //       <Container>
-  //         <Form>
-  //           <Form.Group className="mb-3">
-  //             <Form.Label>¿Que cantidad desea retirar?</Form.Label>
-  //             <Form.Control onChange={handleInput} name="quantity" type="number" placeholder="Introduce cantidad" />
-  //           </Form.Group>
-
-  //           <Button variant="primary" type="submit">
-  //             Realizar operación
-  //           </Button>
-  //         </Form>
-  //       </Container>
-
-  //     )
-  //   } else if (update.op == "depositmoney") {
-  //     return (
-  //       <Container>
-  //         <Form>
-  //           <Form.Group className="mb-3">
-  //             <Form.Label>¿Que cantidad desea ingresar?</Form.Label>
-  //             <Form.Control onChange={handleInput} name="quantity" type="number" min="1" max={account.balance} placeholder="Introduce cantidad" />
-  //           </Form.Group>
-
-  //           <Button variant="primary" type="submit">
-  //             Realizar operación
-  //           </Button>
-  //         </Form>
-  //       </Container>
-
-  //     )
-  //   }
-  // }
-
-  if (update.status == false) {
-    console.log(update)
   }
-
-  // return (
-
-  //   <Container>
-  //     <h5>¿Que operacion desea realizar?</h5>
-
-  //     <Button variant="primary" name="op" value="cashout" onClick={showUp}>Retirar</Button>
-  //     <Button variant="primary" name="op" value="depositmoney" onClick={showUp}>Ingresar</Button>
-
-  //     <OperationForm />
-
-  //   </Container>
-  // )
+  // const date = new Date()
+  // if (update.status == false) {
+  //   console.log(date)
+  // }
 
   if (update.status == true) {
     return (
@@ -150,10 +94,10 @@ function Cash() {
   } else if (update.status == false) {
     return(
       <Container>
-           <Form>
+           <Form onSubmit={moneyOp}>
              <Form.Group className="mb-3">
                <Form.Label>¿Que cantidad desea {update.text}?</Form.Label>
-               <Form.Control onChange={handleInput} name="quantity" type="number" min="1" max={account.balance} placeholder="Introduce cantidad" />
+               <Form.Control onChange={handleInput} name="quantity" type="number" min="1" placeholder="Introduce cantidad" />
              </Form.Group>
 
              <Button variant="primary" type="submit">

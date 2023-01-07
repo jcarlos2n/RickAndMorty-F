@@ -42,8 +42,8 @@ function Loan() {
             months: loan.months,
             account_id: loan.account_id
         })
-        return console.log(newLoan),setTimeout(() => {
-            navigate("/")
+        return newLoan,setTimeout(() => {
+            navigate("/account")
         }, 200);
         } catch (error) {
             console.log(error)

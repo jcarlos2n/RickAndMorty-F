@@ -8,9 +8,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import './Profile.css'
 import { cleanAccount } from '../../MoneyTrans/acountSlice';
-
-
-
+import { cleanNotice } from '../noticeSlice';
 
 function Profile() {
 
@@ -23,6 +21,7 @@ function Profile() {
     const getOut = () => {
         dispatch(logout());
         dispatch(cleanAccount());
+        dispatch(cleanNotice())
         navigate("/")
     }
 
