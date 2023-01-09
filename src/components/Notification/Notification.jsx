@@ -31,21 +31,22 @@ const Notification = () => {
         }
         fetchNotices()
 
-    }, [notice.data])
+    })
 
-    if (notice.data.length > 0) {
-        return (
-            <Container className="noticeWall">
-
-                <img src={bell} alt="notification" className="image" />
-                <p className="noticeNumber">+{notice.data.length}</p>
-
-            </Container>
-        )
+    if (notice.success == true) {
+        if (notice.data.length > 0) {
+            return (
+                <Container className="noticeWall">
+    
+                    <img src={bell} alt="notification" className="image" />
+                    <p className="noticeNumber">+{notice.data.length}</p>
+    
+                </Container>
+            )
+        }
 
     } else {
         <Container></Container>
-
     }
 }
 

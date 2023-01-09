@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { accountData } from '../acountSlice';
 import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
-import { userData } from '../../User/userSlice';
+import { login, profile, userData } from '../../User/userSlice';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
@@ -42,9 +42,9 @@ function Loan() {
             months: loan.months,
             account_id: loan.account_id
         })
-        return newLoan,setTimeout(() => {
+        return console.log(newLoan),setTimeout(() => {
             navigate("/account")
-        }, 200);
+        }, 1000);
         } catch (error) {
             console.log(error)
         }
@@ -53,7 +53,7 @@ function Loan() {
 
     return (
         <Container>
-            <Form onSubmit={createLoan}>
+            <Form>
                 <Form.Group className="mb-3">
                     <Form.Label>Cantidad</Form.Label>
                     <Form.Control onChange={handleInput} name="quantity" type="number" placeholder="Introduce cantidad deseada" />
@@ -63,7 +63,7 @@ function Loan() {
                     <Form.Label>Mensualidades</Form.Label>
                     <Form.Control onChange={handleInput} name="months" type="number" placeholder="Mensualidades" />
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="primary" onClick={createLoan}>
                     Envíar
                 </Button>
             </Form>

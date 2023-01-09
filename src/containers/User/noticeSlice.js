@@ -9,7 +9,7 @@ export const noticeSlice = createSlice({
         addNotice: (state, action) => {
             // state.notice.push(action.payload)
             return {
-                ...state.notice,
+                ...state,
                 ...action.payload
             }
         

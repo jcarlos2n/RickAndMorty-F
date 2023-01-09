@@ -75,10 +75,6 @@ function Cash() {
     }
 
   }
-  // const date = new Date()
-  // if (update.status == false) {
-  //   console.log(date)
-  // }
 
   if (update.status == true) {
     return (
@@ -94,13 +90,13 @@ function Cash() {
   } else if (update.status == false) {
     return(
       <Container>
-           <Form onSubmit={moneyOp}>
+           <Form>
              <Form.Group className="mb-3">
                <Form.Label>¿Que cantidad desea {update.text}?</Form.Label>
                <Form.Control onChange={handleInput} name="quantity" type="number" min="1" placeholder="Introduce cantidad" />
              </Form.Group>
 
-             <Button variant="primary" type="submit">
+             <Button variant="primary" onClick={moneyOp}>
                Realizar operación
              </Button>
            </Form>

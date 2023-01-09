@@ -90,7 +90,7 @@ function SendMoney() {
                     <Form.Control onChange={handleInput} name="quantity" type="number" placeholder="Introduce cantidad" />
                 </Form.Group>
 
-                <Button variant="primary" type="submit" onClick={sendMoney}>
+                <Button variant="primary" onClick={sendMoney}>
                     Envíar
                 </Button>
             </Form>
