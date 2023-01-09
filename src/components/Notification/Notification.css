@@ -1,0 +1,21 @@
+.image{
+    width: 1.5em;
+}
+
+.noticeWall {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.noticeNumber{
+    color: white;
+    background-color: red;
+    padding: 0.1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7em;
+    border-radius: 1em;
+}

@@ -60,8 +60,8 @@ export const loginUser = (body) => async (dispatch) => {
             dispatch(addAccount(account.data.data[0]));
             
             const notice = await axios.get(`http://localhost:3001/notices/getnotices/${account.data.data[0]._id}`)
-            dispatch(addNotice(notice.data.data))
-            console.log(notice.data)
+            dispatch(addNotice(notice.data))
+            console.log("slice",notice.data)
         }
         
 
