@@ -9,6 +9,10 @@ import Button from 'react-bootstrap/Button';
 import './Profile.css'
 import { cleanAccount } from '../../MoneyTrans/acountSlice';
 import { cleanNotice } from '../noticeSlice';
+import Container from 'react-bootstrap/Container';
+import { noticeData } from '../noticeSlice';
+import NotificationCard from '../../../components/NotificationCard/NotificationCard';
+
 
 function Profile() {
 
@@ -17,6 +21,7 @@ function Profile() {
 
     const dataUser = useSelector(userData);
     const [character, setData] = useState([])
+    const notice = useSelector(noticeData)
 
     const getOut = () => {
         dispatch(logout());
@@ -45,31 +50,58 @@ function Profile() {
 
         }
 
-    }, [])
+    }, []);
+
+    const NoticeList = () => {
+        if (notice.data.length > 0) {
+            return (
+                notice?.data.map((noti, index) => (
+                    <Container key={index} className="noticeCard">
+                        <NotificationCard data={noti} />
+                    </Container>
+                ))
+            )
+
+        } else {
+            return (
+                <h3>No tienes préstamos asociados</h3>
+            )
+        }
+    };
 
     if (character == "") {
-        return(
+        return (
             <div><h1>No hay datos</h1></div>
         )
-    }else{
+    } else {
         return (
-       
-            <div>
-                <Card style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src={character.image} />
-                    <Card.Body>
-                        <Card.Title>{character.name}</Card.Title>
-                        <Card.Text><strong>Sexo: </strong>{character.gender}</Card.Text>
-                        <Card.Text><strong>Origen: </strong>{character.origin.name}</Card.Text>
-                        <Card.Text><strong>Especie: </strong>{character.species}</Card.Text>
-                        <Card.Text><strong>Estado: </strong>{character.status}</Card.Text>
-                        <Button variant="primary" onClick={getOut}>Log Out</Button>
-                    </Card.Body>
-                </Card>
-            </div>
+            <Container className='profileWall'>
+                <Container className='profileData'>
+                    <Card className="text-center cardBox">
+                        <Card.Img className='imageBox' variant="top" src={character.image} />
+                        <Card.Body >
+                            <Card.Title>{character.name}</Card.Title>
+                            <Container className='cardBody'>
+                                <Card.Text className='dataLine'><strong>Sexo: </strong>{character.gender}</Card.Text>
+                                <Card.Text className='dataLine'><strong>Origen: </strong>{character.origin.name}</Card.Text>
+                                <Card.Text className='dataLine'><strong>Especie: </strong>{character.species}</Card.Text>
+                                <Card.Text className='dataLine'><strong>Estado: </strong>{character.status}</Card.Text>
+                            </Container>
+
+                            <Button variant="primary" onClick={getOut}>Log Out</Button>
+                        </Card.Body>
+
+                    </Card>
+                </Container>
+                <Container className='notificationBox'>
+                    <NoticeList />
+                </Container>
+
+            </Container>
+
         )
     }
-   
+
 }
 
 export default Profile;

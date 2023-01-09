@@ -41,7 +41,7 @@ function Header() {
       //   }
       // }
       // fetchNotices()
-     }
+    }
   }, [])
 
   if (!dataUser?.token) {
@@ -60,21 +60,23 @@ function Header() {
       </Navbar>
     )
   } else {
-      return (
-        <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
-          <Container>
-            <Navbar.Brand as={Link} to="/">RickAndMortyBank</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
+    return (
+      <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
+        <Container>
+          <Navbar.Brand as={Link} to="/">RickAndMortyBank</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav" className="collapse">
+            <Nav className="me-auto">
                 <Nav.Link as={Link} to="/account">Cuenta</Nav.Link>
-                <Nav.Link as={Link} to="/profile">Perfil</Nav.Link>
+                <Nav.Link as={Link} to="/profile">Perfil</Nav.Link> 
                 <Notification/>
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
-      )
+            </Nav>
+            
+
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    )
   }
 }
 

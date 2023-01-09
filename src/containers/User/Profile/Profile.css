@@ -1,0 +1,56 @@
+.profileWall {
+    padding-top: 6em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 78vh;
+    height: auto;
+}
+
+.profileData{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+    margin: 1em;
+}
+
+.cardBox{
+    max-width: 25em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardBody{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.dataLine{
+    margin: 0.5em;
+}
+.imageBox{
+    max-width: 18em;
+}
+
+.notificationBox{
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.noticeCard{
+    background-color: green;
+    width: 20em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

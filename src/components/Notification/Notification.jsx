@@ -9,10 +9,13 @@ import axios from 'axios';
 import { addNotice } from "../../containers/User/noticeSlice";
 import bell from "../../assets/bell.png"
 import Container from 'react-bootstrap/Container';
+import { useNavigate } from "react-router-dom";
+
 
 const Notification = () => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const account = useSelector(accountData);
     const notice = useSelector(noticeData);
     const dataUser = useSelector(userData);
@@ -36,7 +39,7 @@ const Notification = () => {
     if (notice.success == true) {
         if (notice.data.length > 0) {
             return (
-                <Container className="noticeWall">
+                <Container className="noticeWall" onClick={() => {navigate('./profile')}}>
     
                     <img src={bell} alt="notification" className="image" />
                     <p className="noticeNumber">+{notice.data.length}</p>
