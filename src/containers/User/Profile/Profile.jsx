@@ -4,14 +4,15 @@ import axios from "axios";
 import { logout, userData } from '../userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import './Profile.css'
 import { cleanAccount } from '../../MoneyTrans/acountSlice';
 import { cleanNotice } from '../noticeSlice';
-import Container from 'react-bootstrap/Container';
 import { noticeData } from '../noticeSlice';
-import NotificationCard from '../../../components/NotificationCard/NotificationCard';
+import NoticeCard from '../../../components/NoticeCard/NoticeCard';
+import { accountData } from '../../MoneyTrans/acountSlice';
 
 
 function Profile() {
@@ -21,7 +22,8 @@ function Profile() {
 
     const dataUser = useSelector(userData);
     const [character, setData] = useState([])
-    const notice = useSelector(noticeData)
+    const notice = useSelector(noticeData);
+    const account = useSelector(accountData);
 
     const getOut = () => {
         dispatch(logout());
@@ -47,7 +49,6 @@ function Profile() {
 
             }
             fetchUser()
-
         }
 
     }, []);
@@ -57,14 +58,14 @@ function Profile() {
             return (
                 notice?.data.map((noti, index) => (
                     <Container key={index} className="noticeCard">
-                        <NotificationCard data={noti} />
+                        <NoticeCard data={noti} />
                     </Container>
                 ))
             )
 
         } else {
             return (
-                <h3>No tienes préstamos asociados</h3>
+                <div></div>
             )
         }
     };
@@ -96,7 +97,6 @@ function Profile() {
                 <Container className='notificationBox'>
                     <NoticeList />
                 </Container>
-
             </Container>
 
         )

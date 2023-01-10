@@ -73,6 +73,7 @@ function Account() {
                         <Button variant="primary" className='moneyButton' as={Link} to="/cash" >Ingresar/Retirar dinero</Button>
                         <Button variant="primary" className='moneyButton' as={Link} to="/sendmoney" >Enviar dinero</Button>
                     </Card.Body>
+                    <Card.Text>Préstamos asociados:</Card.Text>
                     <Container className='loanBox'>
                         <LoanList />
                     </Container>

@@ -11,10 +11,19 @@
     border: solid rgb(185, 185, 185) 0.1em;
 }
 
+.userTarget:active{
+    background-color: red;
+    transition: 4s;
+}
+
 .userList{
     display: flex;
     align-items: center;
     justify-content: center;
     height: auto;
     flex-wrap: wrap;
+}
+
+.botton:target{
+    background-color: red;
 }

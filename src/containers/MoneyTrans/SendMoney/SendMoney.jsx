@@ -42,6 +42,9 @@ function SendMoney() {
         user_id: ''
     });
 
+    const friend = users.filter(user => user._id == data.user_id);
+    const friendName = friend[0];
+
     const handleInput = (event) => {
         setData({
             ...data,
@@ -77,26 +80,51 @@ function SendMoney() {
 
     }
 
-    return (
-        <Container className='sendMoneyWall'>
-            Selecciona a que amigo le quieres enviar dinero
-            <Container className='userList'>
-                <UserList />
+    if (friend == '') {
+        return (
+            <Container className='sendMoneyWall'>
+                Selecciona a que amigo le quieres enviar dinero
+                <Container className='userList'>
+                    <UserList />
+                </Container>
+                <Form>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Cantidad</Form.Label>
+                        <Form.Control onChange={handleInput} name="quantity" type="number" placeholder="Introduce cantidad" />
+                    </Form.Group>
+
+                    <Button variant="primary" onClick={sendMoney}>
+                        Envíar
+                    </Button>
+                </Form>
+
             </Container>
+        )
 
-            <Form>
-                <Form.Group className="mb-3">
-                    <Form.Label>Cantidad</Form.Label>
-                    <Form.Control onChange={handleInput} name="quantity" type="number" placeholder="Introduce cantidad" />
-                </Form.Group>
+    } else {
+        return (
+            <Container className='sendMoneyWall'>
+                Selecciona a que amigo le quieres enviar dinero
+                <Container className='userList'>
+                    <UserList />
+                </Container>
+                <h4>El dinero se enviara a {friendName.name}</h4>
+                <Form>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Cantidad</Form.Label>
+                        <Form.Control onChange={handleInput} name="quantity" type="number" placeholder="Introduce cantidad" />
+                    </Form.Group>
 
-                <Button variant="primary" onClick={sendMoney}>
-                    Envíar
-                </Button>
-            </Form>
+                    <Button variant="primary" onClick={sendMoney}>
+                        Envíar
+                    </Button>
+                </Form>
 
-        </Container>
-    )
+            </Container>
+        )
+    }
+
+
 
 }
 

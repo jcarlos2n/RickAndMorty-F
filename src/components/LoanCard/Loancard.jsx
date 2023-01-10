@@ -6,12 +6,8 @@ import './LoanCard.css';
 import { addAccount } from "../../containers/MoneyTrans/acountSlice";
 import { useDispatch } from 'react-redux';
 
-
-
-
-
 const LoanCard = props => {
-     const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const payQuote = async (req, res) => {
         try {
@@ -25,7 +21,6 @@ const LoanCard = props => {
         <Container className='loanCard'>
             <Card>
                 <Card.Body className='loanBody'>
-                    <Card.Title>Préstamo:</Card.Title>
                     <Card.Text>{props.data._id}</Card.Text>
                     <Card.Text><strong>Cantidad: </strong>{props.data.quantity}</Card.Text>
                     <Card.Text><strong>Meses: </strong>{props.data.months}</Card.Text>

@@ -1,5 +1,6 @@
 .profileWall {
-    padding-top: 6em;
+    padding-top: 3em;
+    padding-bottom: 3em;
     display: flex;
     align-items: center;
     justify-content: center;

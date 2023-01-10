@@ -1,4 +1,5 @@
 
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import './App.css'
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import Header from './components/Header/Header'
@@ -9,6 +10,8 @@ import Loan from './containers/MoneyTrans/Loan/Loan'
 import Account from './containers/MoneyTrans/Account/Account'
 import SendMoney from './containers/MoneyTrans/SendMoney/SendMoney'
 import Cash from './containers/MoneyTrans/Cash/Cash'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
  
