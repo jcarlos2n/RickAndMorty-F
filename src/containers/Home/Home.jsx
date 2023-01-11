@@ -2,8 +2,8 @@
 import Container from 'react-bootstrap/Container';
 import './Home.css'
 
-
 function Home() {
+    
     return(
         <Container className='homeWall'>
             <Container className='accountOnline'>

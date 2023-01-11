@@ -9,21 +9,20 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import './Profile.css'
 import { cleanAccount } from '../../MoneyTrans/acountSlice';
-import { cleanNotice } from '../noticeSlice';
+import { addNotice, cleanNotice } from '../noticeSlice';
 import { noticeData } from '../noticeSlice';
-import NoticeCard from '../../../components/NoticeCard/NoticeCard';
 import { accountData } from '../../MoneyTrans/acountSlice';
+import NoticeCard from '../../../components/NoticeCard/NoticeCard';
 
 
 function Profile() {
 
     const dispatch = useDispatch();
     let navigate = useNavigate();
-
     const dataUser = useSelector(userData);
     const [character, setData] = useState([])
-    const notice = useSelector(noticeData);
     const account = useSelector(accountData);
+    const [notifications, setNoti] = useState([])
 
     const getOut = () => {
         dispatch(logout());
@@ -46,23 +45,40 @@ function Profile() {
                 } catch (err) {
                     console.error(err)
                 }
-
+            }
+            async function fetchNotices() {
+                try {
+                    await axios.get(`http://localhost:3001/notices/getnotices/${account._id}`)
+                        .then(resp => {
+                            setNoti(resp.data.data)
+                            dispatch(addNotice(resp.data))
+                        })
+                } catch (err) {
+                    console.error(err)
+                }
             }
             fetchUser()
+            fetchNotices()
         }
 
-    }, []);
+    }, [notifications.length]);
 
-    const NoticeList = () => {
-        if (notice.data.length > 0) {
+    const NotificationsList = () => {
+       
+        // return(
+        //     <NoticeCard />
+        // )
+        
+        if (notifications.length > 0) {
             return (
-                notice?.data.map((noti, index) => (
-                    <Container key={index} className="noticeCard">
-                        <NoticeCard data={noti} />
-                    </Container>
-                ))
+                <Container className="noticeCard">
+                    {
+                        notifications?.map((add, index) => (
+                            <NoticeCard key={index} data={add} />
+                        ))
+                    }
+                </Container>
             )
-
         } else {
             return (
                 <div></div>
@@ -88,17 +104,15 @@ function Profile() {
                                 <Card.Text className='dataLine'><strong>Especie: </strong>{character.species}</Card.Text>
                                 <Card.Text className='dataLine'><strong>Estado: </strong>{character.status}</Card.Text>
                             </Container>
-
                             <Button variant="primary" onClick={getOut}>Log Out</Button>
-                        </Card.Body>
 
+                        </Card.Body>
                     </Card>
                 </Container>
-                <Container className='notificationBox'>
-                    <NoticeList />
-                </Container>
-            </Container>
 
+                <NotificationsList />
+             
+            </Container>
         )
     }
 
