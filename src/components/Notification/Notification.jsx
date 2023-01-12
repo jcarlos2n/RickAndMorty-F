@@ -24,7 +24,10 @@ const Notification = () => {
 
         async function fetchNotices() {
             try {
-                await axios.get(`http://localhost:3001/notices/getnotices/${account._id}`)
+                const config = {
+                    headers: { "Authorization": `Bearer ${dataUser.token}` }
+                }
+                await axios.get(`http://localhost:3001/notices/getnotices/${account._id}`, config)
                     .then(resp => {
                         dispatch(addNotice(resp.data))
                     })

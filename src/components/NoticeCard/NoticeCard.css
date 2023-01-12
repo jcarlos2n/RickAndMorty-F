@@ -1,0 +1,17 @@
+
+.noticeCard{
+    background-color: red;
+    width: 19em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.noticeBody{
+    width: 19em;
+    height: 22em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

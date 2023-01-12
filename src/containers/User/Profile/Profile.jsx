@@ -48,7 +48,10 @@ function Profile() {
             }
             async function fetchNotices() {
                 try {
-                    await axios.get(`http://localhost:3001/notices/getnotices/${account._id}`)
+                    const config = {
+                        headers: { "Authorization": `Bearer ${dataUser.token}` }
+                    }
+                    await axios.get(`http://localhost:3001/notices/getnotices/${account._id}`, config)
                         .then(resp => {
                             setNoti(resp.data.data)
                             dispatch(addNotice(resp.data))
@@ -71,7 +74,7 @@ function Profile() {
         
         if (notifications.length > 0) {
             return (
-                <Container className="noticeCard">
+                <Container className="noticeBox">
                     {
                         notifications?.map((add, index) => (
                             <NoticeCard key={index} data={add} />
@@ -109,7 +112,7 @@ function Profile() {
                         </Card.Body>
                     </Card>
                 </Container>
-
+            
                 <NotificationsList />
              
             </Container>

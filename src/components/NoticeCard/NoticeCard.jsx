@@ -25,14 +25,12 @@ const NoticeCard = props => {
     }
 
     return (
-        <Container>
-            <Card>
+        <Container className='noticeCard'>
+            <Card className='noticeBody'>
                 <Card.Body >
-                    <Card.Title>Notificación:</Card.Title>
-                    <Card.Text><strong>Cuenta: </strong>{props.data._id}</Card.Text>
-                    <Card.Text><strong>Concepto: </strong>{props.data.concept}</Card.Text>
-                    <Card.Text><strong>Fecha: </strong>{props.data.date}</Card.Text>
-                    <Card.Text><strong>Cantidad: </strong>{props.data.quantity}</Card.Text>
+                    <Card.Text><strong>Concepto: </strong><br></br>{props.data.concept}</Card.Text>
+                    <Card.Text><strong>Fecha: </strong><br></br>{props.data.date}</Card.Text>
+                    <Card.Text><strong>Cantidad: </strong><br></br>{props.data.quantity}</Card.Text>
                     <Button variant="primary" onClick={viewNot}>Visto o no</Button>
                 </Card.Body>
             </Card>

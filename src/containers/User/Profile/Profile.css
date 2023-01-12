@@ -48,10 +48,11 @@
     flex-wrap: wrap;
 }
 
-.noticeCard{
+.noticeBox{
     background-color: green;
-    width: 20em;
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }

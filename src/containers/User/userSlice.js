@@ -56,10 +56,15 @@ export const loginUser = (body) => async (dispatch) => {
                 ...decode, 
                 token: user.data.token
             }))
-            const account = await axios.get(`http://localhost:3001/accounts/getallaccounts/${user.data.user.id}`)
+
+            const config = {
+                headers: { "Authorization": `Bearer ${user.data.token}` }
+            }
+
+            const account = await axios.get(`http://localhost:3001/accounts/getallaccounts/${user.data.user.id}`, config)
             dispatch(addAccount(account.data.data[0]));
             
-            const notice = await axios.get(`http://localhost:3001/notices/getnotices/${account.data.data[0]._id}`)
+            const notice = await axios.get(`http://localhost:3001/notices/getnotices/${account.data.data[0]._id}`, config)
             dispatch(addNotice(notice.data))
         }
         

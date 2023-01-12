@@ -27,17 +27,18 @@ function Account() {
         } else {
             async function fetchLoans() {
                 try {
-
-                    axios.get(`http://localhost:3001/loans/getLoans/${account._id}`)
+                    const config = {
+                        headers: { "Authorization": `Bearer ${dataUser.token}` }
+                    }
+                    await axios.get(`http://localhost:3001/loans/getLoans/${account._id}`, config)
                         .then(resp => {
                             setData(resp.data.data)
-
+                        
                         })
                 } catch (error) {
                     console.log(error)
                 }
             }
-
             fetchLoans();
         }
 

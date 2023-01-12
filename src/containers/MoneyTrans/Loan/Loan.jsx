@@ -37,11 +37,14 @@ function Loan() {
 
     const createLoan = async (req, res) => {
         try {
+            const config = {
+                headers: { "Authorization": `Bearer ${dataUser.token}` }
+            }
             const newLoan = await axios.post("http://localhost:3001/loans/createLoan",{
             quantity: loan.quantity,
             months: loan.months,
             account_id: loan.account_id
-        })
+        }, config)
         return console.log(newLoan),setTimeout(() => {
             navigate("/account")
         }, 1000);
