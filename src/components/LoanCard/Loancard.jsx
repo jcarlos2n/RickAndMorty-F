@@ -13,8 +13,10 @@ const LoanCard = props => {
 
     const payQuote = async (req, res) => {
         try {
-        
-            const quote = await axios.put(`http://localhost:3001/loans/payQuote/${props.data._id}`)
+            const config = {
+                headers: { "Authorization": `Bearer ${dataUser.token}` }
+            }
+            const quote = await axios.put(`http://localhost:3001/loans/payQuote/${props.data._id}`, config)
 
             return console.log(quote.data), dispatch(addAccount(quote.data.account));
         } catch (error) {

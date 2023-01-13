@@ -94,30 +94,55 @@ function Profile() {
             <div><h1>No hay datos</h1></div>
         )
     } else {
-        return (
-            <Container className='profileWall'>
-                <Container className='profileData'>
-                    <Card className="text-center cardBox">
-                        <Card.Img className='imageBox' variant="top" src={character.image} />
-                        <Card.Body >
-                            <Card.Title>{character.name}</Card.Title>
-                            <Container className='cardBody'>
-                                <Card.Text className='dataLine'><strong>Sexo: </strong>{character.gender}</Card.Text>
-                                <Card.Text className='dataLine'><strong>Origen: </strong>{character.origin.name}</Card.Text>
-                                <Card.Text className='dataLine'><strong>Especie: </strong>{character.species}</Card.Text>
-                                <Card.Text className='dataLine'><strong>Estado: </strong>{character.status}</Card.Text>
-                            </Container>
-                            <Button variant="primary" onClick={getOut}>Log Out</Button>
-
-                        </Card.Body>
-                    </Card>
+        if (notifications.length > 0) {
+            return (
+                <Container className='profileWall'>
+                    <Container className='profileData'>
+                        <Card className="text-center cardBox">
+                            <Card.Img className='imageBox' variant="top" src={character.image} />
+                            <Card.Body >
+                                <Card.Title>{character.name}</Card.Title>
+                                <Container className='cardBody'>
+                                    <Card.Text className='dataLine'><strong>Sexo: </strong>{character.gender}</Card.Text>
+                                    <Card.Text className='dataLine'><strong>Origen: </strong>{character.origin.name}</Card.Text>
+                                    <Card.Text className='dataLine'><strong>Especie: </strong>{character.species}</Card.Text>
+                                    <Card.Text className='dataLine'><strong>Estado: </strong>{character.status}</Card.Text>
+                                </Container>
+                                <Button variant="primary" onClick={getOut}>Log Out</Button>
+    
+                            </Card.Body>
+                        </Card>
+                    </Container>
+                    <Container className='notificationBox'>
+                        <h3 className='noticeLine'>Notificaciones</h3>
+                        <NotificationsList />
+                    </Container>
                 </Container>
-                <Container className='notificationBox'>
-                    <h3 className='noticeLine'>Notificaciones</h3>
-                    <NotificationsList />
+            )
+        }else{
+            return (
+                <Container className='profileWall'>
+                    <Container className='profileData'>
+                        <Card className="text-center cardBox">
+                            <Card.Img className='imageBox' variant="top" src={character.image} />
+                            <Card.Body >
+                                <Card.Title>{character.name}</Card.Title>
+                                <Container className='cardBody'>
+                                    <Card.Text className='dataLine'><strong>Sexo: </strong>{character.gender}</Card.Text>
+                                    <Card.Text className='dataLine'><strong>Origen: </strong>{character.origin.name}</Card.Text>
+                                    <Card.Text className='dataLine'><strong>Especie: </strong>{character.species}</Card.Text>
+                                    <Card.Text className='dataLine'><strong>Estado: </strong>{character.status}</Card.Text>
+                                </Container>
+                                <Button variant="primary" onClick={getOut}>Log Out</Button>
+    
+                            </Card.Body>
+                        </Card>
+                    </Container>
+                    
                 </Container>
-            </Container>
-        )
+            )
+        }
+       
     }
 
 }
