@@ -1,8 +1,8 @@
 
 import { useEffect, useState } from 'react';
-import { accountData } from '../acountSlice';
+import { accountData, addAccount } from '../acountSlice';
 import { useNavigate } from 'react-router';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { userData } from '../../User/userSlice';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -10,11 +10,11 @@ import Container from 'react-bootstrap/Container';
 import "./Cash.css"
 import axios from 'axios';
 
-
 function Cash() {
   const dataUser = useSelector(userData);
   const navigate = useNavigate();
   const account = useSelector(accountData);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!dataUser?.user) {
@@ -59,17 +59,20 @@ function Cash() {
         text: "ingresar"
       })
     }
-   
+
   };
 
   const moneyOp = async (req, res) => {
     try {
+      const config = {
+        headers: { "Authorization": `Bearer ${dataUser.token}` }
+      }
       const newOp = await axios.put(`http://localhost:3001/accounts/${update.op}/${data.id}`, {
         quantity: data.quantity
-      })
-      return console.log(newOp), setTimeout(() => {
-        navigate("/")
-      }, 2000);
+      }, config)
+      return console.log(newOp),dispatch(addAccount(newOp.data.account)), setTimeout(() => {
+        navigate("/account")
+      }, 1000);
     } catch (error) {
       console.log(error)
     }
@@ -88,19 +91,19 @@ function Cash() {
     )
 
   } else if (update.status == false) {
-    return(
+    return (
       <Container>
-           <Form>
-             <Form.Group className="mb-3">
-               <Form.Label>¿Que cantidad desea {update.text}?</Form.Label>
-               <Form.Control onChange={handleInput} name="quantity" type="number" min="1" placeholder="Introduce cantidad" />
-             </Form.Group>
+        <Form>
+          <Form.Group className="mb-3">
+            <Form.Label>¿Que cantidad desea {update.text}?</Form.Label>
+            <Form.Control onChange={handleInput} name="quantity" type="number" min="1" placeholder="Introduce cantidad" />
+          </Form.Group>
 
-             <Button variant="primary" onClick={moneyOp}>
-               Realizar operación
-             </Button>
-           </Form>
-         </Container>
+          <Button variant="primary" onClick={moneyOp}>
+            Realizar operación
+          </Button>
+        </Form>
+      </Container>
     )
   }
 }

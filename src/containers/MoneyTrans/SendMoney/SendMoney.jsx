@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { accountData } from '../acountSlice';
 import { useNavigate } from 'react-router';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { userData } from '../../User/userSlice';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -10,6 +10,7 @@ import Container from 'react-bootstrap/Container';
 import "./SendMoney.css";
 import axios from 'axios';
 import UserCard from '../../../components/Usercard/UserCard';
+import { addAccount } from '../acountSlice';
 
 
 function SendMoney() {
@@ -18,6 +19,7 @@ function SendMoney() {
     const account = useSelector(accountData);
     const [users, setUsers] = useState([]);
     const friends = users.filter(user => user.name !== dataUser.user.name);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (!dataUser?.user) {
@@ -25,7 +27,10 @@ function SendMoney() {
         } else {
             async function fetchUsers() {
                 try {
-                    await axios.get(`http://localhost:3001/users/`)
+                    const config = {
+                        headers: { "Authorization": `Bearer ${dataUser.token}` }
+                    }
+                    await axios.get(`http://localhost:3001/users/`, config)
                         .then(resp => {
                             setUsers(resp.data.data);
                         })
@@ -67,13 +72,16 @@ function SendMoney() {
 
     const sendMoney = async (req, res) => {
         try {
+            const config = {
+                headers: { "Authorization": `Bearer ${dataUser.token}` }
+            }
             const newSend = await axios.put(`http://localhost:3001/accounts/sendmoney/${account._id}`, {
                 quantity: data.quantity,
                 user_id: data.user_id
-            })
-            return console.log(newSend), setTimeout(() => {
-                navigate("/")
-            }, 200);
+            }, config)
+            return console.log(newSend), dispatch(addAccount(newSend.data.account)), setTimeout(() => {
+                navigate("/account")
+            }, 400);
         } catch (error) {
             console.log(error)
         }
@@ -81,6 +89,7 @@ function SendMoney() {
     }
 
     if (friend == '') {
+       
         return (
             <Container className='sendMoneyWall'>
                 Selecciona a que amigo le quieres enviar dinero

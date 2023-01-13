@@ -1,8 +1,8 @@
 
 import { useEffect, useState } from 'react';
-import { accountData } from '../acountSlice';
+import { accountData, addAccount } from '../acountSlice';
 import { useNavigate } from 'react-router';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login, profile, userData } from '../../User/userSlice';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -15,6 +15,7 @@ function Loan() {
     const dataUser = useSelector(userData);
     const navigate = useNavigate();
     const account = useSelector(accountData);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (!dataUser?.user) {
@@ -45,7 +46,7 @@ function Loan() {
             months: loan.months,
             account_id: loan.account_id
         }, config)
-        return console.log(newLoan),setTimeout(() => {
+        return console.log(newLoan), dispatch(addAccount(newLoan.data.account)), setTimeout(() => {
             navigate("/account")
         }, 1000);
         } catch (error) {

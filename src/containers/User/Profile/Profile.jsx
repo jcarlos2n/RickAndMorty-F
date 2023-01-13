@@ -67,11 +67,11 @@ function Profile() {
     }, [notifications.length]);
 
     const NotificationsList = () => {
-       
+
         // return(
         //     <NoticeCard />
         // )
-        
+
         if (notifications.length > 0) {
             return (
                 <Container className="noticeBox">
@@ -112,9 +112,10 @@ function Profile() {
                         </Card.Body>
                     </Card>
                 </Container>
-            
-                <NotificationsList />
-             
+                <Container className='notificationBox'>
+                    <h3 className='noticeLine'>Notificaciones</h3>
+                    <NotificationsList />
+                </Container>
             </Container>
         )
     }
