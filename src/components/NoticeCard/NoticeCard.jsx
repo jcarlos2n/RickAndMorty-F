@@ -11,8 +11,8 @@ const NoticeCard = props => {
 
     const viewNot = async (req, res) => {
         try {
-
             const view = await axios.put(`http://localhost:3001/notices/noticeview/${props.data._id}`)
+            
             return console.log(view);
         } catch (error) {
             console.log(error)

@@ -22,31 +22,26 @@ const AccountCard = props => {
                 axios.get(`http://localhost:3001/loans/getLoans/${props.data._id}`)
                     .then(resp => {
                         setData(resp.data.data)
-                        // console.log(resp.data)
                     })
             } catch (error) {
                 console.log(error)
             }
         }
         fetchLoans()
-        
+
     }, [])
 
     const LoanList = () => {
         if (data.length > 0) {
-                return (
+            return (
 
-                    data?.map((loan, index) => (
-                        
-                        <Dropdown.Item key={index} className="listCard">
-                            <LoanCard data={loan} className='loanBox' />
-                        </Dropdown.Item>
-                    ))
-
-                )
-
+                data?.map((loan, index) => (
+                    <Dropdown.Item key={index} className="listCard">
+                        <LoanCard data={loan} className='loanBox' />
+                    </Dropdown.Item>
+                ))
+            )
         } else {
-          
             return (
                 <h3>No tienes préstamos asociados</h3>
             )
@@ -66,11 +61,10 @@ const AccountCard = props => {
                     <Button variant="primary" className='moneyButton' >Enviar dinero</Button>
 
                 </Card.Body>
-                        <h4>Préstamos asociados</h4>
-
-                        <Container className='loanBox'>
-                            <LoanList />
-                        </Container>
+                <h4>Préstamos asociados</h4>
+                <Container className='loanBox'>
+                    <LoanList />
+                </Container>
             </Card>
         </Container>
     )

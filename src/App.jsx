@@ -11,10 +11,10 @@ import SendMoney from './containers/MoneyTrans/SendMoney/SendMoney'
 import Cash from './containers/MoneyTrans/Cash/Cash'
 
 function App() {
- 
+
   return (
     <div className="App">
-    <HashRouter>
+      <HashRouter>
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />

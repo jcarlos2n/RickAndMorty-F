@@ -11,7 +11,6 @@ import bell from "../../assets/bell.png"
 import Container from 'react-bootstrap/Container';
 import { useNavigate } from "react-router-dom";
 
-
 const Notification = () => {
 
     const dispatch = useDispatch();
@@ -27,6 +26,7 @@ const Notification = () => {
                 const config = {
                     headers: { "Authorization": `Bearer ${dataUser.token}` }
                 }
+
                 await axios.get(`http://localhost:3001/notices/getnotices/${account._id}`, config)
                     .then(resp => {
                         dispatch(addNotice(resp.data))
@@ -50,7 +50,6 @@ const Notification = () => {
                 </Container>
             )
         }
-
     } else {
         <Container></Container>
     }

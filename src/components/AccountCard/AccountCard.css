@@ -1,10 +1,9 @@
+
 .accountCard{
     height: auto;
-    
 }
 
 .loanBox{
-    
     display: flex;
     flex-wrap: wrap; 
     flex-direction: row;
@@ -13,8 +12,7 @@
     justify-content: center; 
 }
 
-.listCard{
-    
+.listCard{ 
     display: flex;
     align-items: center;
     justify-content: center;
