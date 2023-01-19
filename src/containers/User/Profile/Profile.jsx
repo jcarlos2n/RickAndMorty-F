@@ -68,10 +68,6 @@ function Profile() {
 
     const NotificationsList = () => {
 
-        // return(
-        //     <NoticeCard />
-        // )
-
         if (notifications.length > 0) {
             return (
                 <Container className="noticeBox">

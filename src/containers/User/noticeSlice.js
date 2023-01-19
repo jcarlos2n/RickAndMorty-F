@@ -7,7 +7,6 @@ export const noticeSlice = createSlice({
     },
     reducers: {
         addNotice: (state, action) => {
-            // state.notice.push(action.payload)
             return {
                 ...state,
                 ...action.payload
