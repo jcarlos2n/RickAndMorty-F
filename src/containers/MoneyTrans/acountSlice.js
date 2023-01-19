@@ -7,7 +7,6 @@ export const accountSlice = createSlice({
     },
     reducers: {
         addAccount: (state, action) => {
-            // state.account.push(action.payload)
             return {
                 account: {},
                 ...state,
